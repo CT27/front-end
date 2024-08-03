@@ -1,0 +1,48 @@
+.dashboard-container {
+  height: 100vh; /* Ensure the container takes up the full viewport height */
+  padding: 20px; /* Added consistent padding */
+  box-sizing: border-box; /* Ensure padding is included in the total width and height */
+}
+
+.tiles-container {
+  margin-top: 20px;
+}
+
+.content-area {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.tile {
+  background: #dee2e6;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  color: #ffffff; /* Ensuring text color is white */
+  padding: 20px; /* Standard padding for tiles */
+}
+
+.tile:hover {
+  background-color:#FAB040;
+  color: #000000; /* Ensuring text color changes to black on hover */
+}
+
+.tile-selected {
+  background-color:  #ffffff;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient text effect for tile labels */
+.tile-label {
+  background: linear-gradient(#EF4237, #FAB040);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Fallback for non-WebKit browsers */
+  font-weight: bold; /* Optional: Make the text bold for better visibility */
+}

@@ -1,0 +1,30 @@
+.time-log-entry {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  padding: 20px; /* Consistent padding */
+  margin-bottom: 20px; /* Add margin between entries */
+}
+
+.time-log-entry .btn {
+  background:  linear-gradient(#EF4237, #FAB040);
+  color: #ffffff;
+  border: none;
+}
+
+.time-log-entry .btn:hover {
+  background-color: #e9ecef;
+  color: #000000;
+}
+
+.time-log-form-buttons .btn {
+  background: linear-gradient(#EF4237, #FAB040); /* Apply linear gradient */
+  color: #ffffff;
+  border: none;
+  margin-right: 10px; /* Add margin between buttons */
+}
+
+.time-log-form-buttons .btn:hover {
+  background-color: #e9ecef;
+  color: #000000;
+}
