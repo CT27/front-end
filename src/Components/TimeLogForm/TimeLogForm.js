@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./TimeLogForm.css";
 import { format } from "date-fns";
+import axios from "axios";
 
 const events = [
   { value: "event1", label: "Event 1" },
@@ -59,7 +60,7 @@ const TimeLogForm = () => {
     setEntries(newEntries);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userId = localStorage.getItem("userId");
@@ -76,18 +77,24 @@ const TimeLogForm = () => {
       authorizer: entry.authorizer ? entry.authorizer.label : "N/A",
     }));
 
-    const existingSubmissions =
-      JSON.parse(localStorage.getItem(`timesheetSubmissions_${userId}`)) || [];
-    const updatedSubmissions = [...existingSubmissions, ...formattedEntries];
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/timesheets`,
+        {
+          userId,
+          entries: formattedEntries,
+        }
+      );
 
-    localStorage.setItem(
-      `timesheetSubmissions_${userId}`,
-      JSON.stringify(updatedSubmissions)
-    );
+      console.log("Time log entries submitted:", response.data);
 
-    alert("Time log entries sent for authorization!");
+      alert("Time log entries sent for authorization!");
 
-    setEntries([{ date: null, event: null, hours: "", authorizer: null }]);
+      setEntries([{ date: null, event: null, hours: "", authorizer: null }]);
+    } catch (error) {
+      console.error("Error submitting time log entries:", error);
+      alert("Failed to submit time log entries. Please try again.");
+    }
   };
 
   return (

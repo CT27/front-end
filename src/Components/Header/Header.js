@@ -2,9 +2,19 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Header.css";
 import logo from "../Assets/EVSPLwordnologo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userProfilePicture");
+    navigate("/login");
+  };
+
   return (
     <header className="header-container">
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -48,6 +58,14 @@ const Header = () => {
                 <Link className="nav-link" to="/contact">
                   Contact
                 </Link>
+              </li>
+              <li className="nav-item">
+                <button
+                  className="nav-link btn btn-link"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </button>
               </li>
             </ul>
           </div>

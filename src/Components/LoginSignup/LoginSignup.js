@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,7 +18,9 @@ const LoginSignup = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   // Add a console log to verify the API URL
-  console.log("API URL:", apiUrl);
+  useEffect(() => {
+    console.log("API URL:", apiUrl);
+  }, [apiUrl]);
 
   const handleLogin = async () => {
     if (!email.trim() || !password.trim()) {
@@ -84,7 +86,7 @@ const LoginSignup = () => {
 
       login();
 
-      navigate("/dashboard");
+      navigate("/login"); // Redirect to login page instead of dashboard
     } catch (error) {
       console.error("Signup error:", error.message);
       setErrorMessage(error.response?.data?.message || error.message);
