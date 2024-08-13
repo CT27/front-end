@@ -1,61 +1,62 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./EditProfile.css";
+import { useNavigate } from "react-router-dom";
 
-const EditProfile = ({ userId, onProfileUpdated }) => {
-  const [user, setUser] = useState(null);
-  const [updatedDetails, setUpdatedDetails] = useState({
-    name: "",
-    email: "",
-    profilePicture: "",
-  });
+const EditProfile = ({ userData, onProfileUpdated }) => {
+  const [user, setUser] = useState(userData);
+  // const [user, setUpdatedDetails] = useState({
+  //   name: "",
+  //   email: "",
+  //   profilePicture: "",
+  // });
 
   const apiUrl = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userId) {
+    if (!userData) {
       console.log("No user ID provided.");
       return;
     }
 
     const fetchUser = async () => {
       try {
-        console.log("Fetching user data for ID:", userId);
-        console.log("API URL:", `${apiUrl}/api/users/${userId}`);
-        const response = await axios.get(`${apiUrl}/api/users/${userId}`);
+        console.log("Fetching user data for ID:", userData);
+        console.log("API URL:", `${apiUrl}/api/users/${userData.id}`);
+        const response = await axios.get(`${apiUrl}/api/users/${userData.id}`);
         console.log("User data fetched successfully:", response.data);
         setUser(response.data);
-        setUpdatedDetails({
-          name: response.data.name,
-          email: response.data.email,
-          profilePicture: response.data.profilePicture || "",
-        });
+        // setUpdatedDetails({
+        //   name: response.data.name,
+        //   email: response.data.email,
+        //   profilePicture: response.data.profilePicture || "",
+        // });
       } catch (error) {
-        console.error("Error fetching user data:", error);
-        console.error("Error details:", error.response || error.message);
+        // console.error("Error fetching user data:", error);
+        // console.error("Error details:", error.response || error.message);
       }
     };
 
     fetchUser();
-  }, [userId, apiUrl]);
+  }, [userData, apiUrl]);
 
   const handleSave = async () => {
-    try {
-      const updatedUser = { ...user, ...updatedDetails };
-      console.log("Updating user data:", updatedUser);
-      await axios.patch(`${apiUrl}/api/users/${userId}`, updatedUser);
-      console.log("User data updated successfully.");
-      setUser(updatedUser);
-      onProfileUpdated(updatedUser); // Call the callback function
-    } catch (error) {
-      console.error("Error updating user details:", error);
-    }
+    // try {
+    //   // const updatedUser = { ...user, ...user };
+    //   console.log("Updating user data:", updatedUser);
+    //   await axios.patch(`${apiUrl}/api/users/${userData}`, updatedUser);
+    //   console.log("User data updated successfully.");
+    //   setUser(updatedUser);
+    onProfileUpdated(user); // Call the callback function
+    // } catch (error) {
+    //   console.error("Error updating user details:", error);
+    //   }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUpdatedDetails((prevDetails) => ({
+    setUser((prevDetails) => ({
       ...prevDetails,
       [name]: value,
     }));
@@ -82,7 +83,7 @@ const EditProfile = ({ userId, onProfileUpdated }) => {
               id="name"
               className="form-control"
               name="name"
-              value={updatedDetails.name}
+              value={user.name}
               onChange={handleChange}
             />
           </div>
@@ -95,7 +96,7 @@ const EditProfile = ({ userId, onProfileUpdated }) => {
               id="email"
               className="form-control"
               name="email"
-              value={updatedDetails.email}
+              value={user.email}
               onChange={handleChange}
             />
           </div>
@@ -108,7 +109,7 @@ const EditProfile = ({ userId, onProfileUpdated }) => {
               id="profilePicture"
               className="form-control"
               name="profilePicture"
-              value={updatedDetails.profilePicture}
+              value={user.profilePicture}
               onChange={handleChange}
             />
           </div>
@@ -118,7 +119,10 @@ const EditProfile = ({ userId, onProfileUpdated }) => {
             </button>
             <button
               className="btn btn-secondary"
-              onClick={() => setUpdatedDetails(user)}
+              onClick={() => {
+                onProfileUpdated(userData);
+                navigate("/dashboard", { state: userData });
+              }}
             >
               Cancel
             </button>

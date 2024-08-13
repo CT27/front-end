@@ -5,15 +5,17 @@ import Header from "../Header/Header";
 import TimeLogForm from "../TimeLogForm/TimeLogForm";
 import Reports from "../Reports/Reports";
 import Profile from "../Profile/Profile";
+import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
   const [selectedTile, setSelectedTile] = useState("Timesheet");
-  const [userId, setUserId] = useState(null);
+
+  const location = useLocation();
+  console.log(location.state);
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
     if (storedUserId) {
-      setUserId(storedUserId);
       console.log("User ID found in local storage:", storedUserId);
     } else {
       console.log("User ID not found in local storage");
@@ -31,7 +33,9 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <Header />
       <div className="row h-100">
-        <div className="col-md-3">{userId && <Profile userId={userId} />}</div>
+        <div className="col-md-3">
+          {location.state && <Profile userData={location.state} />}
+        </div>
         <div className="col-md-9">
           <div className="tiles-container row mb-4">
             {["Timesheet", "Reports"].map((tile) => (

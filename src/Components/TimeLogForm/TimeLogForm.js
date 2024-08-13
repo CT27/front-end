@@ -7,6 +7,7 @@ import "./TimeLogForm.css";
 import { format } from "date-fns";
 import axios from "axios";
 
+//an array of event options with value & label properties
 const events = [
   { value: "event1", label: "Event 1" },
   { value: "event2", label: "Event 2" },
@@ -19,11 +20,13 @@ const authorizers = [
   { value: "authorizer3", label: "Manager 3" },
 ];
 
+//component & state management
 const TimeLogForm = () => {
   const [entries, setEntries] = useState([
     { date: null, event: null, hours: "", authorizer: null },
   ]);
 
+  //event handlers
   const handleDateChange = (index, date) => {
     const newEntries = [...entries];
     newEntries[index].date = date;
@@ -47,7 +50,7 @@ const TimeLogForm = () => {
     newEntries[index].authorizer = authorizer;
     setEntries(newEntries);
   };
-
+  //entry management allows new entry/remove to the entries array
   const addEntry = () => {
     setEntries([
       ...entries,
@@ -60,6 +63,7 @@ const TimeLogForm = () => {
     setEntries(newEntries);
   };
 
+  //handles submission and prevents default behaviour
   const handleSubmit = async (e) => {
     e.preventDefault();
 

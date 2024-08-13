@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import EditProfile from "./EditProfile";
+import EditProfile from "../EditProfile/EditProfile";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Profile.css";
 
-const Profile = ({ userId }) => {
+const Profile = ({ userData }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [user, setUser] = useState(null); // Store user data to display when not editing
+  const [user, setUser] = useState(userData); // Store user data to display when not editing
 
   const handleProfileUpdated = (updatedUser) => {
     setUser(updatedUser);
@@ -44,7 +44,7 @@ const Profile = ({ userId }) => {
             </>
           ) : (
             <EditProfile
-              userId={userId}
+              userData={userData}
               onProfileUpdated={handleProfileUpdated}
             />
           )}

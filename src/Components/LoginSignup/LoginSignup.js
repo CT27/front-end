@@ -49,8 +49,8 @@ const LoginSignup = () => {
       });
 
       login();
-
-      navigate("/dashboard");
+      alert(user);
+      navigate("/dashboard", { state: user });
     } catch (error) {
       console.error("Login error:", error.message);
       setErrorMessage(error.response?.data?.message || error.message);
