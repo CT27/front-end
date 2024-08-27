@@ -12,16 +12,14 @@ const LoginSignup = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { login } = useContext(AuthContext);
+  const { login, setUserData } = useContext(AuthContext); // Get login and setUserData from context
   const navigate = useNavigate();
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
-  // Add a console log to verify the API URL
   useEffect(() => {
     console.log("API URL:", apiUrl);
   }, [apiUrl]);
-
   const handleLogin = async () => {
     if (!email.trim() || !password.trim()) {
       setErrorMessage("Email and password are required.");
@@ -36,26 +34,63 @@ const LoginSignup = () => {
       const user = response.data.user;
       console.log("Login successful:", user);
 
-      localStorage.setItem("userId", user.id);
-      localStorage.setItem("userName", user.name);
-      localStorage.setItem("userEmail", user.email);
-      localStorage.setItem("userProfilePicture", user.profilePicture || "");
+      if (user && user.id) {
+        // Update global user data and authentication status
+        login(user);
 
-      console.log("Stored user data in local storage: ", {
-        userId: user.id,
-        userName: user.name,
-        userEmail: user.email,
-        userProfilePicture: user.profilePicture || "",
-      });
+        console.log("User data updated in context:", user);
 
-      login();
-      alert(user);
-      navigate("/dashboard", { state: user });
+        navigate("/dashboard", { state: user });
+      } else {
+        throw new Error("Invalid user data returned from API");
+      }
     } catch (error) {
       console.error("Login error:", error.message);
       setErrorMessage(error.response?.data?.message || error.message);
     }
   };
+
+  // const handleLogin = async () => {
+  //   if (!email.trim() || !password.trim()) {
+  //     setErrorMessage("Email and password are required.");
+  //     return;
+  //   }
+  //   try {
+  //     const response = await axios.post(`${apiUrl}/api/login`, {
+  //       email,
+  //       password,
+  //     });
+
+  //     const user = response.data.user;
+  //     console.log("Login successful:", user);
+
+  //     if (user && user.id) {
+  //       // Store in localStorage
+  //       localStorage.setItem("userId", user.id);
+  //       localStorage.setItem("userName", user.name);
+  //       localStorage.setItem("userEmail", user.email);
+  //       localStorage.setItem("userProfilePicture", user.profilePicture || "");
+
+  //       // Update global user data
+  //       setUserData(user);
+
+  //       console.log("Stored user data in local storage: ", {
+  //         userId: user.id,
+  //         userName: user.name,
+  //         userEmail: user.email,
+  //         userProfilePicture: user.profilePicture || "",
+  //       });
+
+  //       login(); // Mark as logged in
+  //       navigate("/dashboard", { state: user });
+  //     } else {
+  //       throw new Error("Invalid user data returned from API");
+  //     }
+  //   } catch (error) {
+  //     console.error("Login error:", error.message);
+  //     setErrorMessage(error.response?.data?.message || error.message);
+  //   }
+  // };
 
   const handleSignup = async () => {
     if (name === "" || password === "" || email === "") {
@@ -72,21 +107,30 @@ const LoginSignup = () => {
 
       const newUser = response.data.user;
 
-      localStorage.setItem("userId", newUser.id);
-      localStorage.setItem("userName", newUser.name);
-      localStorage.setItem("userEmail", newUser.email);
-      localStorage.setItem("userProfilePicture", newUser.profilePicture || "");
+      if (newUser && newUser.id) {
+        // Store in localStorage
+        localStorage.setItem("userId", newUser.id);
+        localStorage.setItem("userName", newUser.name);
+        localStorage.setItem("userEmail", newUser.email);
+        localStorage.setItem(
+          "userProfilePicture",
+          newUser.profilePicture || ""
+        );
 
-      console.log("Stored user data in local storage: ", {
-        userId: newUser.id,
-        userName: newUser.name,
-        userEmail: newUser.email,
-        userProfilePicture: newUser.profilePicture || "",
-      });
+        // Update global user data
+        setUserData(newUser);
 
-      login();
+        console.log("Stored user data in local storage: ", {
+          userId: newUser.id,
+          userName: newUser.name,
+          userEmail: newUser.email,
+          userProfilePicture: newUser.profilePicture || "",
+        });
 
-      navigate("/login"); // Redirect to login page instead of dashboard
+        navigate("/login"); // Redirect to login page instead of dashboard
+      } else {
+        throw new Error("Invalid user data returned from API");
+      }
     } catch (error) {
       console.error("Signup error:", error.message);
       setErrorMessage(error.response?.data?.message || error.message);
