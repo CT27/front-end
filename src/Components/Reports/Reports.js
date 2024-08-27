@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Reports.css";
+import { AuthContext } from "../AuthContext"; // Import AuthContext to react to user changes
 
 const RATE_PER_HOUR = 35;
 
 const Reports = () => {
   const [reports, setReports] = useState([]);
-  const apiUrl = process.env.REACT_APP_API_URL; // Use apiUrl from environment variables
+  const { userData } = useContext(AuthContext); // Use AuthContext to detect user data changes
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchTimesheets = async () => {
       try {
-        const userId = localStorage.getItem("userId");
-        if (userId) {
-          const response = await axios.get(`${apiUrl}/api/users/${userId}`);
+        if (userData && userData.id) {
+          const response = await axios.get(
+            `${apiUrl}/api/users/${userData.id}`
+          );
           const userTimesheets = response.data.timesheets || [];
           setReports(userTimesheets);
         }
@@ -24,7 +27,7 @@ const Reports = () => {
     };
 
     fetchTimesheets();
-  }, [apiUrl]);
+  }, [userData, apiUrl]); // Fetch timesheets whenever userData or apiUrl changes
 
   return (
     <div className="container mt-4">
