@@ -32,6 +32,14 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
     try {
       const response = await axios.put(`${apiUrl}/api/users/${user.id}`, user);
       console.log("Profile updated successfully:", response.data);
+      // Update local storage with the new user data
+      localStorage.setItem("userId", response.data.id);
+      localStorage.setItem("userName", response.data.name);
+      localStorage.setItem("userEmail", response.data.email);
+      localStorage.setItem(
+        "userProfilePicture",
+        response.data.profilePicture || ""
+      );
       onProfileUpdated(response.data);
     } catch (error) {
       console.error("Error updating profile:", error);

@@ -31,15 +31,6 @@ const Dashboard = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const storedUserId = localStorage.getItem("userId");
-  //   if (storedUserId) {
-  //     console.log("User ID found in local storage:", storedUserId);
-  //   } else {
-  //     console.log("User ID not found in local storage");
-  //   }
-  // }, []);
-
   let content;
   if (selectedTile === "Timesheet") {
     content = <TimeLogForm />;
