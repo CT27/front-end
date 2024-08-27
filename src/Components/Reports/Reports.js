@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Reports.css";
 
@@ -6,17 +7,24 @@ const RATE_PER_HOUR = 35;
 
 const Reports = () => {
   const [reports, setReports] = useState([]);
+  const apiUrl = process.env.REACT_APP_API_URL; // Use apiUrl from environment variables
 
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
+    const fetchTimesheets = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        if (userId) {
+          const response = await axios.get(`${apiUrl}/api/users/${userId}`);
+          const userTimesheets = response.data.timesheets || [];
+          setReports(userTimesheets);
+        }
+      } catch (error) {
+        console.error("Error fetching timesheets:", error);
+      }
+    };
 
-    if (userId) {
-      const timesheetSubmissions =
-        JSON.parse(localStorage.getItem(`timesheetSubmissions_${userId}`)) ||
-        [];
-      setReports(timesheetSubmissions);
-    }
-  }, []);
+    fetchTimesheets();
+  }, [apiUrl]);
 
   return (
     <div className="container mt-4">

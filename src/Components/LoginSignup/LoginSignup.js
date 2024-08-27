@@ -50,44 +50,47 @@ const LoginSignup = () => {
     }
   };
 
-  // const handleLogin = async () => {
-  //   if (!email.trim() || !password.trim()) {
-  //     setErrorMessage("Email and password are required.");
+  // const handleSignup = async () => {
+  //   if (name === "" || password === "" || email === "") {
+  //     setErrorMessage("Name, email, and password are required.");
   //     return;
   //   }
   //   try {
-  //     const response = await axios.post(`${apiUrl}/api/login`, {
+  //     const response = await axios.post(`${apiUrl}/api/signup`, {
+  //       name,
   //       email,
   //       password,
   //     });
+  //     console.log("Signup response:", response.data);
 
-  //     const user = response.data.user;
-  //     console.log("Login successful:", user);
+  //     const newUser = response.data.user;
 
-  //     if (user && user.id) {
+  //     if (newUser && newUser.id) {
   //       // Store in localStorage
-  //       localStorage.setItem("userId", user.id);
-  //       localStorage.setItem("userName", user.name);
-  //       localStorage.setItem("userEmail", user.email);
-  //       localStorage.setItem("userProfilePicture", user.profilePicture || "");
+  //       localStorage.setItem("userId", newUser.id);
+  //       localStorage.setItem("userName", newUser.name);
+  //       localStorage.setItem("userEmail", newUser.email);
+  //       localStorage.setItem(
+  //         "userProfilePicture",
+  //         newUser.profilePicture || ""
+  //       );
 
   //       // Update global user data
-  //       setUserData(user);
+  //       setUserData(newUser);
 
   //       console.log("Stored user data in local storage: ", {
-  //         userId: user.id,
-  //         userName: user.name,
-  //         userEmail: user.email,
-  //         userProfilePicture: user.profilePicture || "",
+  //         userId: newUser.id,
+  //         userName: newUser.name,
+  //         userEmail: newUser.email,
+  //         userProfilePicture: newUser.profilePicture || "",
   //       });
 
-  //       login(); // Mark as logged in
-  //       navigate("/dashboard", { state: user });
+  //       navigate("/login"); // Redirect to login page instead of dashboard
   //     } else {
   //       throw new Error("Invalid user data returned from API");
   //     }
   //   } catch (error) {
-  //     console.error("Login error:", error.message);
+  //     console.error("Signup error:", error.message);
   //     setErrorMessage(error.response?.data?.message || error.message);
   //   }
   // };
@@ -117,17 +120,12 @@ const LoginSignup = () => {
           newUser.profilePicture || ""
         );
 
-        // Update global user data
-        setUserData(newUser);
+        // Update global user data and log the user in
+        login(newUser);
 
-        console.log("Stored user data in local storage: ", {
-          userId: newUser.id,
-          userName: newUser.name,
-          userEmail: newUser.email,
-          userProfilePicture: newUser.profilePicture || "",
-        });
+        console.log("User signed up and logged in:", newUser);
 
-        navigate("/login"); // Redirect to login page instead of dashboard
+        navigate("/dashboard", { state: newUser }); // Redirect to dashboard
       } else {
         throw new Error("Invalid user data returned from API");
       }
