@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext"; // Import AuthContext
 
 const EditProfile = ({ userData, onProfileUpdated }) => {
   const [user, setUser] = useState(userData);
   const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
+
+  const { setUserData } = useContext(AuthContext); // Access setUserData from context
 
   useEffect(() => {
     if (!userData) {
@@ -17,29 +20,23 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(`${apiUrl}/api/users/${userData.id}`);
-
         setUser(response.data);
-      } catch (error) {}
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
     };
 
     fetchUser();
   }, [userData, apiUrl]);
 
-  // const handleSave = async () => {
-  //   onProfileUpdated(user); // Call the callback function
-  // };
   const handleSave = async () => {
     try {
       const response = await axios.put(`${apiUrl}/api/users/${user.id}`, user);
       console.log("Profile updated successfully:", response.data);
-      // Update local storage with the new user data
-      localStorage.setItem("userId", response.data.id);
-      localStorage.setItem("userName", response.data.name);
-      localStorage.setItem("userEmail", response.data.email);
-      localStorage.setItem(
-        "userProfilePicture",
-        response.data.profilePicture || ""
-      );
+
+      // Update global user data
+      setUserData(response.data);
+
       onProfileUpdated(response.data);
     } catch (error) {
       console.error("Error updating profile:", error);
