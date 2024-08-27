@@ -9,18 +9,36 @@ import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
   const [selectedTile, setSelectedTile] = useState("Timesheet");
-
+  const [userData, setUserData] = useState(null);
   const location = useLocation();
   console.log(location.state);
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
+    const storedUserName = localStorage.getItem("userName");
+    const storedUserEmail = localStorage.getItem("userEmail");
+    const storedUserProfilePicture = localStorage.getItem("userProfilePicture");
+
     if (storedUserId) {
-      console.log("User ID found in local storage:", storedUserId);
+      setUserData({
+        id: storedUserId,
+        name: storedUserName,
+        email: storedUserEmail,
+        profilePicture: storedUserProfilePicture,
+      });
     } else {
       console.log("User ID not found in local storage");
     }
   }, []);
+
+  // useEffect(() => {
+  //   const storedUserId = localStorage.getItem("userId");
+  //   if (storedUserId) {
+  //     console.log("User ID found in local storage:", storedUserId);
+  //   } else {
+  //     console.log("User ID not found in local storage");
+  //   }
+  // }, []);
 
   let content;
   if (selectedTile === "Timesheet") {
@@ -34,7 +52,7 @@ const Dashboard = () => {
       <Header />
       <div className="row h-100">
         <div className="col-md-3">
-          {location.state && <Profile userData={location.state} />}
+          {userData && <Profile userData={userData} />}
         </div>
         <div className="col-md-9">
           <div className="tiles-container row mb-4">

@@ -5,12 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const EditProfile = ({ userData, onProfileUpdated }) => {
   const [user, setUser] = useState(userData);
-  // const [user, setUpdatedDetails] = useState({
-  //   name: "",
-  //   email: "",
-  //   profilePicture: "",
-  // });
-
   const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
@@ -22,36 +16,26 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
 
     const fetchUser = async () => {
       try {
-        console.log("Fetching user data for ID:", userData);
-        console.log("API URL:", `${apiUrl}/api/users/${userData.id}`);
         const response = await axios.get(`${apiUrl}/api/users/${userData.id}`);
-        console.log("User data fetched successfully:", response.data);
+
         setUser(response.data);
-        // setUpdatedDetails({
-        //   name: response.data.name,
-        //   email: response.data.email,
-        //   profilePicture: response.data.profilePicture || "",
-        // });
-      } catch (error) {
-        // console.error("Error fetching user data:", error);
-        // console.error("Error details:", error.response || error.message);
-      }
+      } catch (error) {}
     };
 
     fetchUser();
   }, [userData, apiUrl]);
 
+  // const handleSave = async () => {
+  //   onProfileUpdated(user); // Call the callback function
+  // };
   const handleSave = async () => {
-    // try {
-    //   // const updatedUser = { ...user, ...user };
-    //   console.log("Updating user data:", updatedUser);
-    //   await axios.patch(`${apiUrl}/api/users/${userData}`, updatedUser);
-    //   console.log("User data updated successfully.");
-    //   setUser(updatedUser);
-    onProfileUpdated(user); // Call the callback function
-    // } catch (error) {
-    //   console.error("Error updating user details:", error);
-    //   }
+    try {
+      const response = await axios.put(`${apiUrl}/api/users/${user.id}`, user);
+      console.log("Profile updated successfully:", response.data);
+      onProfileUpdated(response.data);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   const handleChange = (e) => {

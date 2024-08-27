@@ -8,10 +8,10 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userEmail");
-    localStorage.removeItem("userProfilePicture");
+    // localStorage.removeItem("userId");
+    // localStorage.removeItem("userName");
+    // localStorage.removeItem("userEmail");
+    // localStorage.removeItem("userProfilePicture");
     navigate("/login");
   };
 
