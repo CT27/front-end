@@ -7,7 +7,7 @@ import "./TimeLogForm.css";
 import { format } from "date-fns";
 import axios from "axios";
 
-//an array of event options with value & label properties
+// an array of event options with value & label properties
 const events = [
   { value: "event1", label: "Event 1" },
   { value: "event2", label: "Event 2" },
@@ -20,13 +20,15 @@ const authorizers = [
   { value: "authorizer3", label: "Manager 3" },
 ];
 
-//component & state management
+// component & state management
 const TimeLogForm = () => {
   const [entries, setEntries] = useState([
     { date: null, event: null, hours: "", authorizer: null },
   ]);
 
-  //event handlers
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  // event handlers
   const handleDateChange = (index, date) => {
     const newEntries = [...entries];
     newEntries[index].date = date;
@@ -50,7 +52,8 @@ const TimeLogForm = () => {
     newEntries[index].authorizer = authorizer;
     setEntries(newEntries);
   };
-  //entry management allows new entry/remove to the entries array
+
+  // entry management allows new entry/remove to the entries array
   const addEntry = () => {
     setEntries([
       ...entries,
@@ -63,7 +66,7 @@ const TimeLogForm = () => {
     setEntries(newEntries);
   };
 
-  //handles submission and prevents default behaviour
+  // handles submission and prevents default behavior
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -82,13 +85,10 @@ const TimeLogForm = () => {
     }));
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/timesheets`,
-        {
-          userId,
-          entries: formattedEntries,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/timesheets`, {
+        userId,
+        entries: formattedEntries,
+      });
 
       console.log("Time log entries submitted:", response.data);
 

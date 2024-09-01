@@ -63,7 +63,7 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
         <h2 className="card-title">Edit Profile</h2>
         <hr />
       </div>
-      <div className="mb">
+      <div className="mb-0">
         <label className="form-label" htmlFor="name">
           Name
         </label>
