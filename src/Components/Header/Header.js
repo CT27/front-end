@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Header.css";
+
 import logo from "../Assets/EVSPLwordnologo.png";
 import { Link, useNavigate } from "react-router-dom";
 

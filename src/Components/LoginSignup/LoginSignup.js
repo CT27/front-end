@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./LoginSignup.css";
+
 import { HiOutlineMail, HiOutlineUser, HiOutlineKey } from "react-icons/hi";
 import axios from "axios";
 

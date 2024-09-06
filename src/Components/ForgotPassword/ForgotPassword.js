@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./ForgotPassword.css";
+
 import { HiOutlineUser } from "react-icons/hi";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 

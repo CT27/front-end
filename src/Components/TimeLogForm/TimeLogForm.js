@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import Select from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./TimeLogForm.css";
+
 import { format } from "date-fns";
 import axios from "axios";
 

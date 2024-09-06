@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext"; // Import AuthContext
 
 const EditProfile = ({ userData, onProfileUpdated }) => {
-  const [user, setUser] = useState(userData);
+  const [user, setUser] = useState({ ...userData });
   const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
@@ -31,10 +31,18 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.put(`${apiUrl}/api/users/${user.id}`, user);
+      const updatedUser = { ...user };
+
+      if (!user.password) {
+        delete updatedUser.password;
+      }
+
+      const response = await axios.put(
+        `${apiUrl}/api/users/${user.id}`,
+        updatedUser
+      );
       console.log("Profile updated successfully:", response.data);
 
-      // Update global user data
       setUserData(response.data);
 
       onProfileUpdated(response.data);
@@ -51,19 +59,14 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
     }));
   };
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div className="edit-profile-wrapper">
-      {/* <div className="container mt-5 d-flex justify-content-center bg-white-card">
-        <div className="card p-4 shadow-lg profile-card"> */}
-      <div className="text-center mb-3">
+    // <div className="edit-profile-wrapper">
+    <div className="card p-5 shadow-lg">
+      <div className="text-center mb-4">
         <h2 className="card-title">Edit Profile</h2>
         <hr />
       </div>
-      <div className="mb-0">
+      <div className="mb-3">
         <label className="form-label" htmlFor="name">
           Name
         </label>
@@ -102,6 +105,20 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
           onChange={handleChange}
         />
       </div>
+      <div className="mb-3">
+        <label className="form-label" htmlFor="password">
+          New Password (optional)
+        </label>
+        <input
+          type="password"
+          id="password"
+          className="form-control"
+          name="password"
+          value={user.password || ""}
+          onChange={handleChange}
+          placeholder="Enter new password or leave blank to keep current password"
+        />
+      </div>
       <div className="d-grid gap-2">
         <button className="btn btn-primary" onClick={handleSave}>
           Save
@@ -117,7 +134,6 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
         </button>
       </div>
     </div>
-    //   </div>
     // </div>
   );
 };

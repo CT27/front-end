@@ -1,12 +1,50 @@
+
+
+
+/* global.css */
+
 body {
-  /* margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100vh; */
-  background: linear-gradient(#FF5733,#C70039);
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
 }
 
+.container {
+  padding-top: 20px;
+}
 
+.card {
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.tile {
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+.tile:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.tile-selected {
+  background-color: #007bff;
+  color: white;
+}
