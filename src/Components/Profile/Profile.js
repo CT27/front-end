@@ -12,9 +12,9 @@ const Profile = ({ userData }) => {
   };
 
   return (
-    // <div className="profile-wrapper">
-    // <div className="container mt-6 d-flex justify-content-center bg-white-card">
-    <div className="card p-4 shadow-lg profile-card">
+    // <div className="profile-wrapper mx-3">
+    // <div className="container mt-1 d-flex justify-content-center bg-white-card mx-1">
+    <div className="card p-5 profile-card ">
       {!isEditing ? (
         <>
           {/* <div className="text-center mb-5"> */}
@@ -29,7 +29,7 @@ const Profile = ({ userData }) => {
                 Profile Picture: <img src={user.profilePicture} alt="Profile" />
               </p>
               <p>ID: {user.id}</p>
-              <div className="d-grid gap-0">
+              <div className="d-grid gap-2">
                 <button
                   className="btn btn-dark text-white"
                   onClick={() => setIsEditing(true)}

@@ -61,7 +61,7 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
 
   return (
     // <div className="edit-profile-wrapper">
-    <div className="card p-5 shadow-lg">
+    <div className="card p-5">
       <div className="text-center mb-4">
         <h2 className="card-title">Edit Profile</h2>
         <hr />
