@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import logo from "../Assets/EVSPLwordnologo.png";
+import logo from "../Assets/EVSPL1.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {

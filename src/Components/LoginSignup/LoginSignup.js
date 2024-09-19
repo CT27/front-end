@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import logo from "../Assets/EVSPLwordlogo.png"; // Assuming this is a valid image path
 import { HiOutlineMail, HiOutlineUser, HiOutlineKey } from "react-icons/hi";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ const LoginSignup = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { login, setUserData } = useContext(AuthContext); // Get login and setUserData from context
+  const { login, setUserData } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -20,6 +20,7 @@ const LoginSignup = () => {
   useEffect(() => {
     console.log("API URL:", apiUrl);
   }, [apiUrl]);
+
   const handleLogin = async () => {
     if (!email.trim() || !password.trim()) {
       setErrorMessage("Email and password are required.");
@@ -35,11 +36,7 @@ const LoginSignup = () => {
       console.log("Login successful:", user);
 
       if (user && user.id) {
-        // Update global user data and authentication status
         login(user);
-
-        console.log("User data updated in context:", user);
-
         navigate("/dashboard", { state: user });
       } else {
         throw new Error("Invalid user data returned from API");
@@ -49,51 +46,6 @@ const LoginSignup = () => {
       setErrorMessage(error.response?.data?.message || error.message);
     }
   };
-
-  // const handleSignup = async () => {
-  //   if (name === "" || password === "" || email === "") {
-  //     setErrorMessage("Name, email, and password are required.");
-  //     return;
-  //   }
-  //   try {
-  //     const response = await axios.post(`${apiUrl}/api/signup`, {
-  //       name,
-  //       email,
-  //       password,
-  //     });
-  //     console.log("Signup response:", response.data);
-
-  //     const newUser = response.data.user;
-
-  //     if (newUser && newUser.id) {
-  //       // Store in localStorage
-  //       localStorage.setItem("userId", newUser.id);
-  //       localStorage.setItem("userName", newUser.name);
-  //       localStorage.setItem("userEmail", newUser.email);
-  //       localStorage.setItem(
-  //         "userProfilePicture",
-  //         newUser.profilePicture || ""
-  //       );
-
-  //       // Update global user data
-  //       setUserData(newUser);
-
-  //       console.log("Stored user data in local storage: ", {
-  //         userId: newUser.id,
-  //         userName: newUser.name,
-  //         userEmail: newUser.email,
-  //         userProfilePicture: newUser.profilePicture || "",
-  //       });
-
-  //       navigate("/login"); // Redirect to login page instead of dashboard
-  //     } else {
-  //       throw new Error("Invalid user data returned from API");
-  //     }
-  //   } catch (error) {
-  //     console.error("Signup error:", error.message);
-  //     setErrorMessage(error.response?.data?.message || error.message);
-  //   }
-  // };
 
   const handleSignup = async () => {
     if (name === "" || password === "" || email === "") {
@@ -111,7 +63,6 @@ const LoginSignup = () => {
       const newUser = response.data.user;
 
       if (newUser && newUser.id) {
-        // Store in localStorage
         localStorage.setItem("userId", newUser.id);
         localStorage.setItem("userName", newUser.name);
         localStorage.setItem("userEmail", newUser.email);
@@ -120,12 +71,8 @@ const LoginSignup = () => {
           newUser.profilePicture || ""
         );
 
-        // Update global user data and log the user in
         login(newUser);
-
-        console.log("User signed up and logged in:", newUser);
-
-        navigate("/dashboard", { state: newUser }); // Redirect to dashboard
+        navigate("/dashboard", { state: newUser });
       } else {
         throw new Error("Invalid user data returned from API");
       }
@@ -147,7 +94,14 @@ const LoginSignup = () => {
   return (
     <div className="container mt-5 d-flex justify-content-center">
       <div className="card p-4 shadow-lg login-signup-card">
+        {/* Insert logo at the top */}
         <div className="text-center mb-4">
+          <img
+            src={logo}
+            alt="EVSPL Logo"
+            className="img-fluid mb-3"
+            style={{ maxWidth: "150px" }}
+          />
           <h1>{action}</h1>
           <hr className="my-4" />
         </div>
