@@ -20,7 +20,12 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/dashboard">
-            <img src={logo} alt="Logo" className="header-logo" />
+            <img
+              src={logo}
+              alt="Logo"
+              className="header-logo"
+              style={{ width: "100px", height: "auto" }}
+            />
           </Link>
           <button
             className="navbar-toggler"
