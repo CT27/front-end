@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "./AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-import logo from "../Assets/EVSPLwordlogo.png"; // Assuming this is a valid image path
+import logo from "./Assets/EVSPLwordlogo.png"; // Assuming this is a valid image path
 import { HiOutlineMail, HiOutlineUser, HiOutlineKey } from "react-icons/hi";
 import axios from "axios";
 
@@ -100,7 +100,7 @@ const LoginSignup = () => {
             src={logo}
             alt="EVSPL Logo"
             className="img-fluid mb-3"
-            style={{ maxWidth: "150px" }}
+            style={{ maxWidth: "100%" }}
           />
           <h1>{action}</h1>
           <hr className="my-4" />

@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { AuthContext } from "../AuthContext"; // Import AuthContext to react to user changes
+import { AuthContext } from "./AuthContext"; // Import AuthContext to react to user changes
 
 const RATE_PER_HOUR = 35;
 

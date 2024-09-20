@@ -1,7 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import logo from "../Assets/EVSPL1.png";
+import logo from "./Assets/EVSPLwordlogo.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -24,7 +23,7 @@ const Header = () => {
               src={logo}
               alt="Logo"
               className="header-logo"
-              style={{ width: "100px", height: "auto" }}
+              style={{ height: "30%" }}
             />
           </Link>
           <button

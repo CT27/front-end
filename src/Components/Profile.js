@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EditProfile from "../EditProfile/EditProfile";
+import EditProfile from "./EditProfile";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Profile = ({ userData }) => {

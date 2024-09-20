@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../AuthContext"; // Import AuthContext
+import { AuthContext } from "./AuthContext"; // Import AuthContext
 
 const EditProfile = ({ userData, onProfileUpdated }) => {
   const [user, setUser] = useState({ ...userData });

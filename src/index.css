@@ -30,13 +30,13 @@ body {
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #FF0000;
+  border-color: #FF0000;
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: #FFA500;
+  border-color: #FFA500;
 }
 
 .tile {
@@ -47,12 +47,12 @@ body {
 }
 
 .tile:hover {
-  background-color: #007bff;
+  background-color: #FFA500;
   color: white;
 }
 
 .tile-selected {
-  background-color: #007bff;
+  background-color: #FF0000;
   color: white;
 }
 .selector-for-some-widget {

@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "../Header/Header";
-import TimeLogForm from "../TimeLogForm/TimeLogForm";
-import Reports from "../Reports/Reports";
-import Profile from "../Profile/Profile";
-import { AuthContext } from "../AuthContext";
+import Header from "./Header";
+import TimeLogForm from "./TimeLogForm";
+import Reports from "./Reports";
+import Profile from "./Profile";
+import { AuthContext } from "./AuthContext";
 
 const Dashboard = () => {
   const [selectedTile, setSelectedTile] = useState("Timesheet");

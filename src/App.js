@@ -7,13 +7,13 @@ import {
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import LoginSignup from "./Components/LoginSignup/LoginSignup";
-import Dashboard from "./Components/Dashboard/Dashboard";
-import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
-import Profile from "./Components/Profile/Profile";
-import About from "./Components/About/About";
-import Verification from "./Components/Verification/Verification";
-import Contact from "./Components/Contact/Contact";
+import LoginSignup from "./Components/LoginSignup";
+import Dashboard from "./Components/Dashboard";
+import ForgotPassword from "./Components/ForgotPassword";
+import Profile from "./Components/Profile";
+import About from "./Components/About";
+import Verification from "./Components/Verification";
+import Contact from "./Components/Contact";
 
 function App() {
   return (
