@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
+import "../index.css"; // Import your global styles first
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "./Assets/EVSPLwordlogo.png"; // Assuming this is a valid image path
 import { HiOutlineMail, HiOutlineUser, HiOutlineKey } from "react-icons/hi";

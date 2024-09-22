@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import EditProfile from "./EditProfile";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../index.css"; // Import your global styles first
+import "bootstrap/dist/css/bootstrap.min.css"; // Then Bootstrap
 
 const Profile = ({ userData }) => {
   const [isEditing, setIsEditing] = useState(false);

@@ -5,8 +5,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import ".//index.css"; // Import your global styles first
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import LoginSignup from "./Components/LoginSignup";
 import Dashboard from "./Components/Dashboard";
 import ForgotPassword from "./Components/ForgotPassword";

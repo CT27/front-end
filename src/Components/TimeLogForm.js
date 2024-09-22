@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../index.css"; // Import your global styles first
+import "bootstrap/dist/css/bootstrap.min.css"; // Then Bootstrap
 
 import { format } from "date-fns";
 import axios from "axios";

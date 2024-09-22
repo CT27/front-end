@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../index.css"; // Import your global styles first
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { HiOutlineUser } from "react-icons/hi";

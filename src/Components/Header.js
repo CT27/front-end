@@ -1,16 +1,13 @@
 import React from "react";
+import ColorModeSwitch from "./ColorModeSwitch";
+import "../index.css"; // Import your global styles first
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "./Assets/EVSPLwordlogo.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
-
   const handleSignOut = () => {
-    // localStorage.removeItem("userId");
-    // localStorage.removeItem("userName");
-    // localStorage.removeItem("userEmail");
-    // localStorage.removeItem("userProfilePicture");
     navigate("/login");
   };
 
@@ -23,7 +20,7 @@ const Header = () => {
               src={logo}
               alt="Logo"
               className="header-logo"
-              style={{ height: "30%" }}
+              style={{ height: "50px" }}
             />
           </Link>
           <button
@@ -70,6 +67,10 @@ const Header = () => {
                 >
                   Sign Out
                 </button>
+              </li>
+              <li className="nav-item">
+                {/* Color mode switch button */}
+                <ColorModeSwitch />
               </li>
             </ul>
           </div>

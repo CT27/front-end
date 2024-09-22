@@ -1,4 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
+import "../index.css"; // Import your global styles first
+import "bootstrap/dist/css/bootstrap.min.css"; // Then Bootstrap
 
 const AuthContext = createContext();
 

@@ -1,5 +1,7 @@
 import React from "react";
 import Header from "./Header";
+import "../index.css"; // Import your global styles first
+import "bootstrap/dist/css/bootstrap.min.css"; // Then Bootstrap
 
 const Verification = () => {
   return (

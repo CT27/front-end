@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../index.css"; // Import your global styles first
+import "bootstrap/dist/css/bootstrap.min.css"; // Then Bootstrap
 import Header from "./Header";
 import TimeLogForm from "./TimeLogForm";
 import Reports from "./Reports";
