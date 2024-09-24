@@ -8,10 +8,17 @@ const Contact = () => {
     <>
       <Header />
       <div className="container my-5">
-        <div className="content-area">
+        <div className="card p-4 shadow-sm">
           <h2>Contact EventStaffPro</h2>
-          <p>Email: contact@eventstaffpro.com</p>
-          <p>Phone: +123 456 7890</p>
+          <p>
+            Email:{" "}
+            <a href="mailto:contact@eventstaffpro.com">
+              contact@eventstaffpro.com
+            </a>
+          </p>
+          <p>
+            Phone: <a href="tel:+1234567890">+123 456 7890</a>
+          </p>
           <p>Address: 123 Event Street, EventCity, EV 12345</p>
         </div>
       </div>

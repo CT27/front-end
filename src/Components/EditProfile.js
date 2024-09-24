@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import "../index.css"; // Import your global styles first
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../index.css"; // Import your custom global styles first
+import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext"; // Import AuthContext
 
@@ -9,7 +9,6 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
   const [user, setUser] = useState({ ...userData });
   const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
-
   const { setUserData } = useContext(AuthContext); // Access setUserData from context
 
   useEffect(() => {
@@ -34,6 +33,7 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
     try {
       const updatedUser = { ...user };
 
+      // Avoid sending empty password
       if (!user.password) {
         delete updatedUser.password;
       }
@@ -44,9 +44,8 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
       );
       console.log("Profile updated successfully:", response.data);
 
-      setUserData(response.data);
-
-      onProfileUpdated(response.data);
+      setUserData(response.data); // Update the user data in context
+      onProfileUpdated(response.data); // Call the parent function to handle the update
     } catch (error) {
       console.error("Error updating profile:", error);
     }
@@ -61,12 +60,13 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
   };
 
   return (
-    // <div className="edit-profile-wrapper">
-    <div className="card p-5">
+    <div className="edit-profile-wrapper card p-4 shadow-sm">
       <div className="text-center mb-4">
-        <h2 className="card-title">Edit Profile</h2>
+        <h2>Edit Profile</h2>
         <hr />
       </div>
+
+      {/* Name Field */}
       <div className="mb-3">
         <label className="form-label" htmlFor="name">
           Name
@@ -80,6 +80,8 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
           onChange={handleChange}
         />
       </div>
+
+      {/* Email Field */}
       <div className="mb-3">
         <label className="form-label" htmlFor="email">
           Email
@@ -93,6 +95,8 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
           onChange={handleChange}
         />
       </div>
+
+      {/* Profile Picture Field */}
       <div className="mb-3">
         <label className="form-label" htmlFor="profilePicture">
           Profile Picture URL
@@ -106,6 +110,8 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
           onChange={handleChange}
         />
       </div>
+
+      {/* Password Field */}
       <div className="mb-3">
         <label className="form-label" htmlFor="password">
           New Password (optional)
@@ -117,9 +123,11 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
           name="password"
           value={user.password || ""}
           onChange={handleChange}
-          placeholder="Enter new password or leave blank to keep current password"
+          placeholder="Enter new password or leave blank"
         />
       </div>
+
+      {/* Buttons */}
       <div className="d-grid gap-2">
         <button className="btn btn-primary" onClick={handleSave}>
           Save
@@ -135,7 +143,6 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
         </button>
       </div>
     </div>
-    // </div>
   );
 };
 

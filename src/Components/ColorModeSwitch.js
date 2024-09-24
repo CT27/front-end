@@ -1,4 +1,3 @@
-// ColorModeSwitch.js
 import React, { useContext } from "react";
 import { ColorModeContext } from "./ColorModeContext";
 
@@ -7,7 +6,7 @@ const ColorModeSwitch = () => {
 
   return (
     <button className="btn btn-secondary" onClick={toggleColorMode}>
-      {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      {isDarkMode ? "Light Mode" : "Dark Mode"}
     </button>
   );
 };

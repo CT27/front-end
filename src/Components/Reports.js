@@ -31,9 +31,9 @@ const Reports = () => {
 
   return (
     <div className="container mt-4">
-      <div className="table-responsive border p-4 rounded shadow-sm">
+      <div className="table-responsive border p-3 rounded shadow-sm">
         <table className="table table-striped">
-          <thead>
+          <thead className="table-dark">
             <tr>
               <th>Date</th>
               <th>Hours</th>

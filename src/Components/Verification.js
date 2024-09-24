@@ -8,7 +8,7 @@ const Verification = () => {
     <>
       <Header />
       <div className="container my-5">
-        <div className="content-area">
+        <div className="card p-4 shadow-sm">
           <h2>Verification</h2>
           <p>
             To verify your details, please visit our verification partner{" "}

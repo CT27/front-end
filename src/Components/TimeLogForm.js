@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Then Bootstrap
 import { format } from "date-fns";
 import axios from "axios";
 
-// an array of event options with value & label properties
 const events = [
   { value: "event1", label: "Event 1" },
   { value: "event2", label: "Event 2" },
@@ -21,7 +20,6 @@ const authorizers = [
   { value: "authorizer3", label: "Manager 3" },
 ];
 
-// component & state management
 const TimeLogForm = () => {
   const [entries, setEntries] = useState([
     { date: null, event: null, hours: "", authorizer: null },
@@ -29,7 +27,6 @@ const TimeLogForm = () => {
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
-  // event handlers
   const handleDateChange = (index, date) => {
     const newEntries = [...entries];
     newEntries[index].date = date;
@@ -54,7 +51,6 @@ const TimeLogForm = () => {
     setEntries(newEntries);
   };
 
-  // entry management allows new entry/remove to the entries array
   const addEntry = () => {
     setEntries([
       ...entries,
@@ -67,7 +63,6 @@ const TimeLogForm = () => {
     setEntries(newEntries);
   };
 
-  // handles submission and prevents default behavior
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -106,10 +101,7 @@ const TimeLogForm = () => {
     <div className="container mt-4">
       <form onSubmit={handleSubmit}>
         {entries.map((entry, index) => (
-          <div
-            key={index}
-            className="mb-3 border p-4 rounded shadow-sm time-log-entry"
-          >
+          <div key={index} className="mb-4 p-4 border rounded shadow-sm">
             <div className="mb-3">
               <label htmlFor={`date-${index}`} className="form-label">
                 Date:
@@ -165,17 +157,21 @@ const TimeLogForm = () => {
             <button
               type="button"
               onClick={() => removeEntry(index)}
-              className="btn btn-danger me-2"
+              className="btn btn-danger"
             >
               Remove Entry
             </button>
           </div>
         ))}
-        <div className="time-log-form-buttons">
-          <button type="button" onClick={addEntry} className="btn me-2">
+        <div className="d-flex justify-content-between">
+          <button
+            type="button"
+            onClick={addEntry}
+            className="btn btn-secondary"
+          >
             Add Entry
           </button>
-          <button type="submit" className="btn">
+          <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>

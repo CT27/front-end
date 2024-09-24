@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <header className="header-container">
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/dashboard">
             <img
@@ -37,11 +37,7 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/dashboard"
-                >
+                <Link className="nav-link active" to="/dashboard">
                   Home
                 </Link>
               </li>
@@ -62,14 +58,13 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <button
-                  className="nav-link btn btn-link"
+                  className="btn btn-link nav-link"
                   onClick={handleSignOut}
                 >
                   Sign Out
                 </button>
               </li>
               <li className="nav-item">
-                {/* Color mode switch button */}
                 <ColorModeSwitch />
               </li>
             </ul>

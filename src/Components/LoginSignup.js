@@ -94,7 +94,10 @@ const LoginSignup = () => {
 
   return (
     <div className="container mt-5 d-flex justify-content-center">
-      <div className="card p-4 shadow-lg login-signup-card">
+      <div
+        className="card p-4 shadow-lg login-signup-card"
+        style={{ maxWidth: "500px" }}
+      >
         {/* Insert logo at the top */}
         <div className="text-center mb-4">
           <img
@@ -106,13 +109,13 @@ const LoginSignup = () => {
           <h1>{action}</h1>
           <hr className="my-4" />
         </div>
-        <div className="d-flex justify-content-center mb-3">
+
+        {/* Button Group for Action Selection */}
+        <div className="btn-group w-100 mb-4" role="group">
           <button
             type="button"
             className={`btn ${
-              action === "Sign Up"
-                ? "btn-light text-dark"
-                : "btn-dark text-white"
+              action === "Sign Up" ? "btn-light" : "btn-dark text-white"
             }`}
             onClick={() => setAction("Sign Up")}
           >
@@ -120,14 +123,15 @@ const LoginSignup = () => {
           </button>
           <button
             type="button"
-            className={`btn ms-2 ${
-              action === "Login" ? "btn-light text-dark" : "btn-dark text-white"
+            className={`btn ${
+              action === "Login" ? "btn-light" : "btn-dark text-white"
             }`}
             onClick={() => setAction("Login")}
           >
             Login
           </button>
         </div>
+
         <form onSubmit={handleSubmit}>
           {action === "Sign Up" && (
             <div className="mb-3">
@@ -158,6 +162,7 @@ const LoginSignup = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
+
           <div className="mb-3">
             <label className="form-label" htmlFor="password">
               <HiOutlineKey className="me-2" /> Password
@@ -171,6 +176,7 @@ const LoginSignup = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+
           {action === "Login" && (
             <div className="mb-3 text-end">
               <Link to="/forgotpassword" className="text-dark">
@@ -178,11 +184,13 @@ const LoginSignup = () => {
               </Link>
             </div>
           )}
+
           <div className="d-grid">
             <button type="submit" className="btn btn-dark text-white">
               Submit
             </button>
           </div>
+
           {errorMessage && (
             <div className="alert alert-danger mt-3">{errorMessage}</div>
           )}

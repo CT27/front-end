@@ -8,7 +8,7 @@ const About = () => {
     <>
       <Header />
       <div className="container my-5">
-        <div className="content-area">
+        <div className="card p-4 shadow-sm">
           <h2>About EventStaffPro</h2>
           <p>
             EventStaffPro is a platform for event staff to manage their
