@@ -1,3 +1,4 @@
+// ColorModeContext.js
 import React, { createContext, useState, useEffect } from "react";
 
 const ColorModeContext = createContext();
@@ -5,28 +6,31 @@ const ColorModeContext = createContext();
 const ColorModeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Initialize dark mode based on system preference or saved mode
+  // Check the local storage and system preferences on first load
   useEffect(() => {
     const savedMode = localStorage.getItem("colorMode");
     const prefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
-    const defaultDarkMode = savedMode === "dark" || (!savedMode && prefersDark);
 
-    setIsDarkMode(defaultDarkMode);
+    // If there's a saved mode, use it, otherwise use system preference
+    const initialMode = savedMode ? savedMode === "dark" : prefersDark;
+    setIsDarkMode(initialMode);
 
-    if (defaultDarkMode) {
+    // Apply the dark mode class if necessary
+    if (initialMode) {
       document.body.classList.add("dark-mode");
     }
   }, []);
 
-  // Toggle dark mode class on body and save preference to localStorage
+  // Update the DOM and localStorage when isDarkMode changes
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("dark-mode");
     } else {
       document.body.classList.remove("dark-mode");
     }
+
     localStorage.setItem("colorMode", isDarkMode ? "dark" : "light");
   }, [isDarkMode]);
 

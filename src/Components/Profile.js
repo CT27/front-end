@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import EditProfile from "./EditProfile";
-import "../index.css"; // Import your global styles first
-import "bootstrap/dist/css/bootstrap.min.css"; // Then Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Profile = ({ userData }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -13,7 +12,7 @@ const Profile = ({ userData }) => {
   };
 
   return (
-    <div className="card p-4 profile-card">
+    <div className="p4 profile-card">
       {!isEditing ? (
         <>
           <h3 className="card-title text-center">Profile</h3>
@@ -22,24 +21,20 @@ const Profile = ({ userData }) => {
             <div className="profile-details">
               <h4>{user.name}</h4>
               <p>{user.email}</p>
-              <p>
-                Profile Picture:{" "}
-                <img
-                  src={user.profilePicture}
-                  alt="Profile"
-                  className="img-fluid rounded-circle"
-                  style={{ maxWidth: "150px" }}
-                />
-              </p>
+              <img
+                src={user.profilePicture}
+                alt="Profile"
+                className="img-fluid rounded mb-3"
+                style={{ maxWidth: "150px" }}
+              />
               <p>ID: {user.id}</p>
-              <div className="d-grid gap-2">
-                <button
-                  className="btn btn-dark text-white"
-                  onClick={() => setIsEditing(true)}
-                >
-                  Edit Profile
-                </button>
-              </div>
+              <button
+                className="btn btn-primary w-80
+                "
+                onClick={() => setIsEditing(true)}
+              >
+                Edit Profile
+              </button>
             </div>
           )}
         </>

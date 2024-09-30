@@ -3,9 +3,10 @@
   --primary-color: #FF0000; /* Primary button color */
   --secondary-color: #FFA500; /* Secondary button color */
   --primary-bg-color: #ffffff; /* Background color for light mode */
-  --primary-text-color: #000000; /* Text color for light mode */
-  --button-bg-color: var(--primary-color); /* Default button background color */
+  --primary-text-color:linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,165,0,1) 100%);
+   /* Text color for light mode */
   --dark-background: #1C1C1C; /* Background color for dark elements */
+
 }
 
 /* Dark Mode */
@@ -16,15 +17,13 @@ body.dark-mode {
 }
 
 body {
-  background-color: var(--primary-bg-color); /* Set body background */
-  color: var(--primary-text-color);          /* Set text color */
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
   transition: background-color 0.3s, color 0.3s;
   font-family: 'Arial', sans-serif;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 50px;
 }
 
+/* Button Styling */
 button {
   background-color: var(--button-bg-color);
   color: var(--primary-text-color);
@@ -36,15 +35,16 @@ button {
 }
 
 .btn-primary {
-  background-color: var(--primary-color); /* Use variable for consistency */
+  background-color: var(--primary-color);
   border-color: var(--primary-color);
 }
 
 .btn-secondary {
-  background-color: var(--secondary-color); /* Use variable */
+  background-color: var(--secondary-color);
   border-color: var(--secondary-color);
 }
 
+/* Tile Styling */
 .tile {
   cursor: pointer;
   border-radius: 8px;
@@ -61,57 +61,7 @@ button {
   color: white;
 }
 
-/* Responsive breakpoints */
-@media (max-width: 768px) {
-  .container {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .card {
-    padding: 10px;
-  }
-
-  .btn {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .tile {
-    font-size: 16px;
-    padding: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .card {
-    padding: 5px;
-  }
-
-  .btn {
-    font-size: 12px;
-    padding: 8px;
-  }
-
-  .tile {
-    font-size: 14px;
-    padding: 15px;
-  }
-}
-
-/* Box-sizing applied globally */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* index.css */
+/* Profile Card */
 .profile-card {
   background-color: var(--dark-background);
   color: var(--primary-text-color);
@@ -128,4 +78,107 @@ button {
   max-width: 100px;
   border-radius: 50%;
   margin-bottom: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .tile {
+    font-size: 16px;
+    padding: 20px;
+  }
+
+  .profile-card {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .tile {
+    font-size: 14px;
+    padding: 15px;
+  }
+
+  .profile-card {
+    margin-bottom: 20px;
+  }
+}
+
+/* Box-sizing applied globally */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* The switch wrapper */
+.slider-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide the default checkbox */
+.slider-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc; /* Light background for "off" */
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* When the switch is checked (dark mode on) */
+input:checked + .slider {
+  background-color: #FF0000; /* Red for dark mode */
+}
+
+/* Move the slider knob to the right when checked */
+input:checked + .slider:before {
+  transform: translateX(26px); /* Slide the toggle knob to the right */
+}
+
+/* Optionally add a shadow to the slider for better appearance */
+.slider {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

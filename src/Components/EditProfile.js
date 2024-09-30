@@ -60,14 +60,14 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
   };
 
   return (
-    <div className="edit-profile-wrapper card p-4 shadow-sm">
-      <div className="text-center mb-4">
+    <div className="p-4 profile-card">
+      <div className="card-title text-center">
         <h2>Edit Profile</h2>
         <hr />
       </div>
 
       {/* Name Field */}
-      <div className="mb-3">
+      <div className="mb-4">
         <label className="form-label" htmlFor="name">
           Name
         </label>
@@ -82,7 +82,7 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
       </div>
 
       {/* Email Field */}
-      <div className="mb-3">
+      <div className="mb-4">
         <label className="form-label" htmlFor="email">
           Email
         </label>
@@ -97,7 +97,7 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
       </div>
 
       {/* Profile Picture Field */}
-      <div className="mb-3">
+      <div className="mb-4">
         <label className="form-label" htmlFor="profilePicture">
           Profile Picture URL
         </label>
@@ -112,7 +112,7 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
       </div>
 
       {/* Password Field */}
-      <div className="mb-3">
+      <div className="mb-4">
         <label className="form-label" htmlFor="password">
           New Password (optional)
         </label>
@@ -129,11 +129,11 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
 
       {/* Buttons */}
       <div className="d-grid gap-2">
-        <button className="btn btn-primary" onClick={handleSave}>
+        <button className="btn btn-dark text-white w-100" onClick={handleSave}>
           Save
         </button>
         <button
-          className="btn btn-secondary"
+          className="btn btn-dark text-white w-100"
           onClick={() => {
             onProfileUpdated(userData);
             navigate("/dashboard", { state: userData });
