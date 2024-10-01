@@ -23,7 +23,7 @@ const Profile = ({ userData }) => {
                 src={user.profilePicture}
                 alt="Profile"
                 className="rounded mb-3"
-                style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                style={{ width: "150x", height: "150px", objectFit: "cover" }}
               />
               <h4>{user.name}</h4>
               <p>{user.email}</p>

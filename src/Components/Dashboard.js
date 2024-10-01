@@ -5,6 +5,7 @@ import Header from "./Header";
 import TimeLogForm from "./TimeLogForm";
 import Reports from "./Reports";
 import Profile from "./Profile";
+import EditProfile from "./EditProfile"; // Added EditProfile for example
 import { AuthContext } from "./AuthContext";
 
 // Reusable Tile Button Component
@@ -25,7 +26,6 @@ const TileButton = ({ label, selectedTile, onClick }) => (
 const Dashboard = () => {
   const [selectedTile, setSelectedTile] = useState("Timesheet");
   const { userData } = useContext(AuthContext); // Access userData from AuthContext
-
   const content = selectedTile === "Timesheet" ? <TimeLogForm /> : <Reports />;
 
   return (
@@ -36,8 +36,11 @@ const Dashboard = () => {
           {/* Sidebar/Profile Column */}
           <div className="col-md-3 mb-4">
             {userData && (
-              <div className="card text-center">
+              <div className="profile-card card text-center">
+                {/* The profile card or edit profile will expand to fill the sidebar height */}
                 <Profile userData={userData} />
+                {/* You can conditionally render EditProfile if needed */}
+                {/* <EditProfile userData={userData} /> */}
               </div>
             )}
           </div>
@@ -54,8 +57,6 @@ const Dashboard = () => {
                 />
               ))}
             </div>
-
-            {/* Dynamic Content Area */}
             <div className="card p-4 shadow-sm content-area">{content}</div>
           </div>
         </div>

@@ -4,6 +4,8 @@
   --primary-text-color: #000000;
   --button-bg-color: #ff0000;
   --dark-background: #1C1C1C; /* Background color for tiles, cards, etc. */
+  --primary-color: #ff0000;
+  --secondary-color: #FFA500;
 }
 
 /* Dark Mode */
@@ -17,9 +19,10 @@ body.dark-mode, .dark-mode {
 body, .dark-mode {
   background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Button Styling */
 button {
   background-color: var(--button-bg-color);
   color: var(--primary-text-color);
@@ -29,7 +32,6 @@ button {
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
-
 
 .btn-primary {
   background-color: var(--primary-color);
@@ -50,7 +52,9 @@ button {
 }
 
 .tile:hover {
-  background-color: var(--secondary-color); /* Hover color for tiles */
+  background-color: var(--secondary-color); /* Stronger hover effect */
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add some shadow for emphasis */
 }
 
 .tile-selected {
@@ -64,6 +68,7 @@ button {
   color: var(--primary-text-color);
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
 .profile-card .card-title {
@@ -75,6 +80,94 @@ button {
   max-width: 100px;
   border-radius: 50%;
   margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.profile-card .profile-details h4 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.profile-card .profile-details p {
+  margin: 5px 0;
+}
+
+.profile-card .form-label {
+  font-weight: bold;
+}
+
+.profile-card input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.profile-card button {
+  margin-top: 15px;
+}
+
+/* The switch wrapper */
+.slider-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide the default checkbox */
+.slider-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:hover {
+  background-color: #bbb; /* Slight change on hover */
+}
+
+.slider:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add focus ring */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* When the switch is checked (dark mode on) */
+input:checked + .slider {
+  background-color: #039719; /* Green for dark mode */
+}
+
+/* Move the slider knob to the right when checked */
+input:checked + .slider:before {
+  transform: translateX(26px); /* Slide the toggle knob to the right */
+}
+
+/* Optionally add a shadow to the slider for better appearance */
+.slider {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive Adjustments */
@@ -118,6 +211,26 @@ button {
   }
 }
 
+@media (min-width: 1024px) {
+  .container {
+    padding: 20px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .tile {
+    font-size: 18px;
+    padding: 25px;
+  }
+
+  .profile-card {
+    margin-bottom: 25px;
+  }
+}
+
 /* Box-sizing applied globally */
 *,
 *::before,
@@ -125,108 +238,31 @@ button {
   box-sizing: border-box;
 }
 
-/* The switch wrapper */
-.slider-switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+/* Dashboard Layout: Make the row a flex container with equal height columns */
+.dashboard-container .row {
+  display: flex;
+  align-items: stretch; /* Stretch both columns to the same height */
 }
 
-/* Hide the default checkbox */
-.slider-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+/* Sidebar Column (Profile and Edit Profile) */
+.dashboard-container .col-md-3 {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure the sidebar stretches to full height */
 }
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc; /* Light background for "off" */
-  transition: 0.4s;
-  border-radius: 34px;
+/* Main Content Column (Timesheet/Reports) */
+.dashboard-container .col-md-9 {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure main content stretches to full height */
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-/* When the switch is checked (dark mode on) */
-input:checked + .slider {
-  background-color: #039719; /* Red for dark mode */
-}
-
-/* Move the slider knob to the right when checked */
-input:checked + .slider:before {
-  transform: translateX(26px); /* Slide the toggle knob to the right */
-}
-
-/* Optionally add a shadow to the slider for better appearance */
-.slider {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
+/* Make the profile card or edit profile stretch to fill the available height */
 .profile-card {
-  background-color: var(--dark-background); /* Your custom background */
-  color: var(--primary-text-color);
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.profile-card .card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.profile-card .profile-details img {
-  border-radius: 50%; /* Circular profile image */
-  object-fit: cover;
-  width: 100px;
-  height: 100px;
-  margin-bottom: 15px;
-}
-
-.profile-card .profile-details h4 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.profile-card .profile-details p {
-  margin: 5px 0;
-}
-.profile-card {
-  background-color: var(--dark-background); /* Your custom background */
-  color: var(--primary-text-color);
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.profile-card .form-label {
-  font-weight: bold;
-}
-
-.profile-card input {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-}
-
-.profile-card button {
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1; /* Ensures the profile card stretches to fill the parent */
+  height: 100%;
 }
