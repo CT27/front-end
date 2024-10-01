@@ -1,29 +1,25 @@
 /* Light Mode (Default) */
 :root {
-  --primary-color: #FF0000; /* Primary button color */
-  --secondary-color: #FFA500; /* Secondary button color */
-  --primary-bg-color: #ffffff; /* Background color for light mode */
-  --primary-text-color:linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,165,0,1) 100%);
-   /* Text color for light mode */
-  --dark-background: #1C1C1C; /* Background color for dark elements */
-
+  --primary-bg-color: #ffffff;
+  --primary-text-color: #000000;
+  --button-bg-color: #ff0000;
+  --dark-background: #1C1C1C; /* Background color for tiles, cards, etc. */
 }
 
 /* Dark Mode */
-body.dark-mode {
+body.dark-mode, .dark-mode {
   --primary-bg-color: #1C1C1C; /* Dark mode background */
-  --primary-text-color: #ffffff; /* Dark mode text */
-  --button-bg-color: var(--secondary-color); /* Button color in dark mode */
+  --primary-text-color: #ffffff; /* Dark mode text color */
+  --button-bg-color: #FFA500; /* Button color in dark mode */
+  --dark-background: #333333; /* Darker background for dark mode */
 }
 
-body {
+body, .dark-mode {
   background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
   transition: background-color 0.3s, color 0.3s;
-  font-family: 'Arial', sans-serif;
 }
 
-/* Button Styling */
 button {
   background-color: var(--button-bg-color);
   color: var(--primary-text-color);
@@ -33,6 +29,7 @@ button {
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
+
 
 .btn-primary {
   background-color: var(--primary-color);
@@ -170,7 +167,7 @@ button {
 
 /* When the switch is checked (dark mode on) */
 input:checked + .slider {
-  background-color: #FF0000; /* Red for dark mode */
+  background-color: #039719; /* Red for dark mode */
 }
 
 /* Move the slider knob to the right when checked */
@@ -181,4 +178,55 @@ input:checked + .slider:before {
 /* Optionally add a shadow to the slider for better appearance */
 .slider {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-card {
+  background-color: var(--dark-background); /* Your custom background */
+  color: var(--primary-text-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profile-card .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.profile-card .profile-details img {
+  border-radius: 50%; /* Circular profile image */
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.profile-card .profile-details h4 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.profile-card .profile-details p {
+  margin: 5px 0;
+}
+.profile-card {
+  background-color: var(--dark-background); /* Your custom background */
+  color: var(--primary-text-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profile-card .form-label {
+  font-weight: bold;
+}
+
+.profile-card input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.profile-card button {
+  margin-top: 15px;
 }

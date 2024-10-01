@@ -12,25 +12,24 @@ const Profile = ({ userData }) => {
   };
 
   return (
-    <div className="p4 profile-card">
+    <div className="card p-4 profile-card text-center shadow-sm">
       {!isEditing ? (
         <>
-          <h3 className="card-title text-center">Profile</h3>
+          <h3 className="card-title">Profile</h3>
           <hr />
           {user && (
             <div className="profile-details">
-              <h4>{user.name}</h4>
-              <p>{user.email}</p>
               <img
                 src={user.profilePicture}
                 alt="Profile"
-                className="img-fluid rounded mb-3"
-                style={{ maxWidth: "150px" }}
+                className="rounded mb-3"
+                style={{ width: "100px", height: "100px", objectFit: "cover" }}
               />
+              <h4>{user.name}</h4>
+              <p>{user.email}</p>
               <p>ID: {user.id}</p>
               <button
-                className="btn btn-primary w-80
-                "
+                className="btn btn-dark text-white w-100"
                 onClick={() => setIsEditing(true)}
               >
                 Edit Profile
