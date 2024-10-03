@@ -3,17 +3,17 @@
   --primary-bg-color: #ffffff;
   --primary-text-color: #000000;
   --button-bg-color: #ff0000;
-  --dark-background: #1C1C1C; /* Background color for tiles, cards, etc. */
+  --dark-background: #1C1C1C;
   --primary-color: #ff0000;
   --secondary-color: #FFA500;
 }
 
 /* Dark Mode */
 body.dark-mode, .dark-mode {
-  --primary-bg-color: #1C1C1C; /* Dark mode background */
-  --primary-text-color: #ffffff; /* Dark mode text color */
-  --button-bg-color: #FFA500; /* Button color in dark mode */
-  --dark-background: #333333; /* Darker background for dark mode */
+  --primary-bg-color: #1C1C1C;
+  --primary-text-color: #ffffff;
+  --button-bg-color: #FFA500;
+  --dark-background: #333333;
 }
 
 body, .dark-mode {
@@ -52,9 +52,9 @@ button {
 }
 
 .tile:hover {
-  background-color: var(--secondary-color); /* Stronger hover effect */
+  background-color: var(--secondary-color);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add some shadow for emphasis */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tile-selected {
@@ -62,20 +62,34 @@ button {
   color: white;
 }
 
-/* Profile Card */
-.profile-card {
-  background-color: var(--dark-background);
+/* Profile and Edit Profile card styling */
+.profile-card, .edit-profile-card {
+  background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Same border for both */
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Unified shadow */
   padding: 20px;
 }
 
-.profile-card .card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+/* Remove any extra borders from Bootstrap's card class */
+.card {
+  border: none;
 }
 
+/* Input field styling */
+.profile-card input, .edit-profile-card input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* Ensure consistent button spacing */
+.profile-card button, .edit-profile-card button {
+  margin-top: 15px;
+}
+
+/* Image styling inside profile card */
 .profile-card img {
   max-width: 100px;
   border-radius: 50%;
@@ -83,30 +97,22 @@ button {
   object-fit: cover;
 }
 
-.profile-card .profile-details h4 {
+/* Card title for both Profile and Edit Profile */
+.profile-card .card-title, .edit-profile-card .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.profile-card .profile-details h4, .edit-profile-card .profile-details h4 {
   margin: 0;
   font-size: 1.25rem;
 }
 
-.profile-card .profile-details p {
+.profile-card .profile-details p, .edit-profile-card .profile-details p {
   margin: 5px 0;
 }
 
-.profile-card .form-label {
-  font-weight: bold;
-}
-
-.profile-card input {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-}
-
-.profile-card button {
-  margin-top: 15px;
-}
-
-/* The switch wrapper */
+/* Slider Switch */
 .slider-switch {
   position: relative;
   display: inline-block;
@@ -114,14 +120,12 @@ button {
   height: 34px;
 }
 
-/* Hide the default checkbox */
 .slider-switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -135,12 +139,12 @@ button {
 }
 
 .slider:hover {
-  background-color: #bbb; /* Slight change on hover */
+  background-color: #bbb;
 }
 
 .slider:focus {
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add focus ring */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .slider:before {
@@ -155,17 +159,14 @@ button {
   border-radius: 50%;
 }
 
-/* When the switch is checked (dark mode on) */
 input:checked + .slider {
-  background-color: #039719; /* Green for dark mode */
+  background-color: #333333;
 }
 
-/* Move the slider knob to the right when checked */
 input:checked + .slider:before {
-  transform: translateX(26px); /* Slide the toggle knob to the right */
+  transform: translateX(26px);
 }
 
-/* Optionally add a shadow to the slider for better appearance */
 .slider {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -186,7 +187,7 @@ input:checked + .slider:before {
     padding: 20px;
   }
 
-  .profile-card {
+  .profile-card, .edit-profile-card {
     margin-bottom: 20px;
   }
 }
@@ -206,7 +207,7 @@ input:checked + .slider:before {
     padding: 15px;
   }
 
-  .profile-card {
+  .profile-card, .edit-profile-card {
     margin-bottom: 20px;
   }
 }
@@ -226,7 +227,7 @@ input:checked + .slider:before {
     padding: 25px;
   }
 
-  .profile-card {
+  .profile-card, .edit-profile-card {
     margin-bottom: 25px;
   }
 }
@@ -241,28 +242,28 @@ input:checked + .slider:before {
 /* Dashboard Layout: Make the row a flex container with equal height columns */
 .dashboard-container .row {
   display: flex;
-  align-items: stretch; /* Stretch both columns to the same height */
+  align-items: stretch;
 }
 
 /* Sidebar Column (Profile and Edit Profile) */
 .dashboard-container .col-md-3 {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensure the sidebar stretches to full height */
+  height: 100%;
 }
 
 /* Main Content Column (Timesheet/Reports) */
 .dashboard-container .col-md-9 {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensure main content stretches to full height */
+  height: 100%;
 }
 
 /* Make the profile card or edit profile stretch to fill the available height */
-.profile-card {
+.profile-card, .edit-profile-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 1; /* Ensures the profile card stretches to fill the parent */
+  flex: 1;
   height: 100%;
 }

@@ -25,7 +25,14 @@ const TileButton = ({ label, selectedTile, onClick }) => (
 
 const Dashboard = () => {
   const [selectedTile, setSelectedTile] = useState("Timesheet");
+  const [isEditing, setIsEditing] = useState(false); // Track edit mode
   const { userData } = useContext(AuthContext); // Access userData from AuthContext
+
+  const handleProfileUpdated = (updatedUser) => {
+    // Handle profile update and close the edit mode
+    setIsEditing(false);
+  };
+
   const content = selectedTile === "Timesheet" ? <TimeLogForm /> : <Reports />;
 
   return (
@@ -36,12 +43,22 @@ const Dashboard = () => {
           {/* Sidebar/Profile Column */}
           <div className="col-md-3 mb-4">
             {userData && (
-              <div className="profile-card card text-center">
-                {/* The profile card or edit profile will expand to fill the sidebar height */}
-                <Profile userData={userData} />
-                {/* You can conditionally render EditProfile if needed */}
-                {/* <EditProfile userData={userData} /> */}
-              </div>
+              <>
+                {!isEditing ? (
+                  // Profile wrapped with a card
+                  <div className="card text-center profile-card">
+                    <Profile userData={userData} />
+                  </div>
+                ) : (
+                  // Render EditProfile without any extra wrapping card
+                  <div className="edit-profile-card">
+                    <EditProfile
+                      userData={userData}
+                      onProfileUpdated={handleProfileUpdated}
+                    />
+                  </div>
+                )}
+              </>
             )}
           </div>
 
