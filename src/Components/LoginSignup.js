@@ -13,7 +13,7 @@ const LoginSignup = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { login, setUserData } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const apiUrl = process.env.REACT_APP_API_URL;
