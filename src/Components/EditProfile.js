@@ -62,7 +62,7 @@ const EditProfile = ({ userData, onProfileUpdated }) => {
   return (
     <div className="card p-4 edit-profile-card text-center shadow-sm">
       <div className="card-title text-center">
-        <h2>Edit Profile</h2>
+        <h3>Edit Profile</h3>
         <hr />
       </div>
 
