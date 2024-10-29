@@ -261,6 +261,7 @@ const TimeLogForm = () => {
     }));
 
     try {
+      console.log("Test timehseets");
       const response = await axios.post(`${apiUrl}/api/timesheets`, {
         userId: userData.id, // Use userData.id from AuthContext
         entries: formattedEntries,
